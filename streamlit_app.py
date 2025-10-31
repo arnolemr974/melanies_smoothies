@@ -18,7 +18,8 @@ session = cnx.session()
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 my_dataframe2 = session.table("smoothies.public.orders").collect()
-
+if my_dataframe2:
+	editable_df = st.data_editor(my_dataframe2)
 #st.dataframe(data=my_dataframe, use_container_width=True)
 #st.stop()
 
@@ -45,11 +46,11 @@ if ingredients_list:
     st.write(ingredients_string) 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
                 values ('"""+ ingredients_string + """','"""+name_on_order+"""')"""
-    time_to_insert = st.button('Submit Order')
+
+	time_to_insert = st.button('Submit Order')
     if time_to_insert:
         st.success('Your Smoothie is ordered!', icon="✅")
-	if my_dataframe2:
-		editable_df = st.data_editor(my_dataframe2)
+
 	submitted = st.button('Submit')	
 	if submitted:	
 		og_dataset = session.table("smoothies.public.orders")
