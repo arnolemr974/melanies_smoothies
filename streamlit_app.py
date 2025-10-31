@@ -17,6 +17,8 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
+my_dataframe2 = session.table("smoothies.public.orders").collect()
+
 #st.dataframe(data=my_dataframe, use_container_width=True)
 #st.stop()
 
@@ -46,14 +48,10 @@ if ingredients_list:
     time_to_insert = st.button('Submit Order')
     if time_to_insert:
         st.success('Your Smoothie is ordered!', icon="✅")
-#st.text(smoothiefroot_response.json())
-session = get_active_session()
-my_dataframe2 = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
-if my_dataframe2:
-	editable_df = st.data_editor(my_dataframe2)
+	if my_dataframe2:
+		editable_df = st.data_editor(my_dataframe2)
 	submitted = st.button('Submit')	
 	if submitted:	
-
 		og_dataset = session.table("smoothies.public.orders")
 		edited_dataset = session.create_dataframe(editable_df)
 		
@@ -66,4 +64,4 @@ if my_dataframe2:
 		except:
 			st.write('Something went wrong')
 else:
-    st.success('there are no pending orders right now', icon = '👍')	
+st.success('there are no pending orders right now', icon = '👍')	
