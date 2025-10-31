@@ -47,6 +47,7 @@ if ingredients_list:
     if time_to_insert:
         st.success('Your Smoothie is ordered!', icon="✅")
 #st.text(smoothiefroot_response.json())
+session = get_active_session()
 my_dataframe2 = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
 if my_dataframe2:
 	editable_df = st.data_editor(my_dataframe2)
