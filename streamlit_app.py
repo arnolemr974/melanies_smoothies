@@ -49,7 +49,7 @@ if ingredients_list:
 #st.text(smoothiefroot_response.json())
 my_dataframe2 = session.table("smoothies.public.orders").filter(col("ORDER_FILLED")==0).collect()
 if my_dataframe2:
-	editable_df = st.data_editor(my_dataframe)
+	editable_df = st.data_editor(my_dataframe2)
 	submitted = st.button('Submit')	
 	if submitted:	
 
