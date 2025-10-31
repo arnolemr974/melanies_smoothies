@@ -47,7 +47,9 @@ if ingredients_list:
     
         time_to_insert = st.button('Submit Order')
     if time_to_insert:
-      my_insert_stmt = """ insert into smoothies.public.orders(ingredients,name_on_order)
+      my_insert_stmt2 = """ insert into smoothies.public.orders(ingredients,name_on_order)
                 values ('"""+ ingredients_string + """','"""+name_on_order+"""')"""  
       st.success('Your Smoothie is ordered!', icon="✅")
+my_insert_stmt3 = """ insert into smoothies.public.orders(ingredients,name_on_order)
+        values ('"""+ ingredients_string + """','"""+name_on_order+"""')"""
 #st.text(smoothiefroot_response.json())
