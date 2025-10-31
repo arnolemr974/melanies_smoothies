@@ -42,5 +42,8 @@ if ingredients_list:
     #st.write(my_insert_stmt)
     #if ingredients_string:
         #session.sql(my_insert_stmt).collect()
-        cnx = st.connection("snowflake")
+
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon"
+st.text(smoothiefroot_response)
 
